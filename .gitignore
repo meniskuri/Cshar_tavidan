@@ -1,0 +1,16 @@
+logs/
+a.exe
+*.exe
+bin/
+main.log
+*.o
+*.s
+obj/
+bin/
+*.suo
+*.sln
+*.csproj
+*.suo 
+*.v1
+*.v2
+*.json 
