@@ -9,11 +9,24 @@ namespace otxSaatiani_tutorial
 {
     internal class Program
     {
+        
         static void Main(string[] args)
         {
+            // programis agweraa ras aketebs
+            // rom gaushveb programas es unda ibechdebodes tavidan
+            // cvladebi aq mgoni (mere struqturebs da egetebs rom gavivli uket gavaketeb - davubrunde)
+            //
+
+            // -1 folder jadoebi სადაც ჩაიწერება ლოცვები იმის მიხედვით ვინ გაუშვებს ამ კოდს
+            string folderName_jado = "Jadoebi"; 
+            string fullPath_jado   = Path.Combine(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "..", "..")), folderName_jado);
+
+
             // 0. ნულოვანი წერტილი საიდანაც უნდა დაიწყოს ჩემი ცვლილება 
             Console.WriteLine(" bidzinas dedas movtynav\n " +
                 "-vnaxot aba ra moxdeba\n -putinic miyveba \n//////////////");
+
+
 
             // 1. მომხმარებლის მიერ ფოლდერის შეყვანა
             Console.Write("enter folder name: ");
@@ -27,16 +40,17 @@ namespace otxSaatiani_tutorial
 
             // 3. ფოლდერის სრული მისამართი
             //string fullPath = Path.Combine(Environment.CurrentDirectory, folderName);
-            // ფოლდერის მისამართს აბრუნებს ოღონდ cs ფაილი სადაც არის მანდ. მოკლედ ორით უკან ის ბინში ვარდებოდა
-            // და გიტ იგნორით ბინ ფაილს ვერ ვკითხულობდი ასატვირთად. არადა უნდა დავადეკლალირო დაწყება ამ საქმის ტექსტ ფაილით
-            string fullPath = Path.Combine(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "..","..")), folderName);
+            // ფოლდერში სადაც მთავარი .cs კოდია მანდ შექმნილ jadoebi ფოლდერში შედის ეს
+            string fullPath = Path.Combine(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "..","..")), fullPath_jado,folderName);
             Console.WriteLine("fullpath is " + fullPath);
            
+
             // 3.4 აქ ჯერ შეამოწმოს fullpath ში რა ფოლდერებია
             // ამომიწეროს და მკითხოს ახალი ფოლდერი შევქნა თუ ავირჩიო 
             // თუ შეყვანილი ფოლდერის სახელირომელიმეს ემთხვევა მითხრას რომ მაგაში ჩაიწრება?
             // როგორ ავირჩიო ორით უკან ფაილი? 
             // kai jer chavwero faili shignit da mere vnaxot aba ra da rogor gadavaketo
+
 
             // Console.WriteLine("pauza");
             // Console.ReadLine();
@@ -59,7 +73,8 @@ namespace otxSaatiani_tutorial
             string filePath = Path.Combine(fullPath, fileName);
 
             // 7. ტექსტის ჩაწერა ფაილში
-            File.WriteAllText(filePath, text);
+            // 
+            File.WriteAllText(filePath, text); 
             Console.WriteLine("text will save in file: " + filePath);
 
             // 8. ფაილიდან წაკითხვა
