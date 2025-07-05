@@ -11,25 +11,43 @@ namespace otxSaatiani_tutorial
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("bidzinas dedas movtynav\n " +
-                "vnaxot aba ra moxdeba");
+            // 0. ნულოვანი წერტილი საიდანაც უნდა დაიწყოს ჩემი ცვლილება 
+            Console.WriteLine(" bidzinas dedas movtynav\n " +
+                "-vnaxot aba ra moxdeba\n -putinic miyveba \n//////////////");
 
-            /*
-            string folder = @"C:\Users\Gio\Desktop\Programireba\Cshar_tavidan\otxSaatiani_tutorial";
-            // Filename
-            string fileName = "sikvdilisSia.txt";
-            // Fullpath. You can direct hardcode it if you like.
-            string fullPath = fileName;
-            // An array of strings
-            string[] authors = {"yornis dzvali"};
-            // Write array of strings to a file using WriteAllLines.
-            // If the file does not exists, it will create a new file.
-            // This method automatically opens the file, writes to it, and closes file
-            File.WriteAllLines(fullPath, authors);
-            // Read a file
-            string readText = File.ReadAllText(fullPath);
-            Console.WriteLine(readText);
-            */
+            // 1. მომხმარებლის მიერ ფოლდერის შეყვანა
+            Console.Write("enter folder name: ");
+            string folderName = Console.ReadLine();
+            Console.WriteLine("folder name is " + folderName);
+
+            // 2. მომხმარებლის მიერ ფაილის სახელის შეყვანა
+            Console.Write("enter file name (without .txt): ");
+            string fileName = Console.ReadLine() + ".txt";
+            Console.WriteLine("file name is " + fileName);
+
+            // 3. ფოლდერის სრული მისამართი
+            //string fullPath = Path.Combine(Environment.CurrentDirectory, folderName);
+            string fullPath = Path.Combine(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "..","..")), folderName);
+            Console.WriteLine("fullpath is " + fullPath);
+            Console.WriteLine("aq var :)");
+
+            // 3.4 აქ ჯერ შეამოწმოს fullpath ში რა ფოლდერებია
+            // ამომიწეროს და მკითხოს ახალი ფოლდერი შევქნა თუ ავირჩიო 
+            // თუ შეყვანილი ფოლდერის სახელირომელიმეს ემთხვევა მითხრას რომ მაგაში ჩაიწრება?
+            // როგორ ავირჩიო ორით უკან ფაილი? 
+
+            Console.WriteLine("pauza");
+            Console.ReadLine();
+
+            // 4. ფოლდერის შექმნა (თუ არ არსებობს)
+            if (!Directory.Exists(fullPath))
+            {
+                Directory.CreateDirectory(fullPath);
+                Console.WriteLine("folder created: " + fullPath);
+            } else
+            {
+                Console.WriteLine("folder exist: " + fullPath);
+            }
         }
     }
 }
