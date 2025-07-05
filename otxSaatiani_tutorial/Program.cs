@@ -27,17 +27,19 @@ namespace otxSaatiani_tutorial
 
             // 3. ფოლდერის სრული მისამართი
             //string fullPath = Path.Combine(Environment.CurrentDirectory, folderName);
+            // ფოლდერის მისამართს აბრუნებს ოღონდ cs ფაილი სადაც არის მანდ. მოკლედ ორით უკან ის ბინში ვარდებოდა
+            // და გიტ იგნორით ბინ ფაილს ვერ ვკითხულობდი ასატვირთად. არადა უნდა დავადეკლალირო დაწყება ამ საქმის ტექსტ ფაილით
             string fullPath = Path.Combine(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "..","..")), folderName);
             Console.WriteLine("fullpath is " + fullPath);
-            Console.WriteLine("aq var :)");
-
+           
             // 3.4 აქ ჯერ შეამოწმოს fullpath ში რა ფოლდერებია
             // ამომიწეროს და მკითხოს ახალი ფოლდერი შევქნა თუ ავირჩიო 
             // თუ შეყვანილი ფოლდერის სახელირომელიმეს ემთხვევა მითხრას რომ მაგაში ჩაიწრება?
             // როგორ ავირჩიო ორით უკან ფაილი? 
+            // kai jer chavwero faili shignit da mere vnaxot aba ra da rogor gadavaketo
 
-            Console.WriteLine("pauza");
-            Console.ReadLine();
+            // Console.WriteLine("pauza");
+            // Console.ReadLine();
 
             // 4. ფოლდერის შექმნა (თუ არ არსებობს)
             if (!Directory.Exists(fullPath))
@@ -48,6 +50,22 @@ namespace otxSaatiani_tutorial
             {
                 Console.WriteLine("folder exist: " + fullPath);
             }
+
+            // 5. ტექსტის შეყვანა
+            Console.Write("enter text for file: ");
+            string text = Console.ReadLine();
+
+            // 6. ფაილის სრული მისამართი
+            string filePath = Path.Combine(fullPath, fileName);
+
+            // 7. ტექსტის ჩაწერა ფაილში
+            File.WriteAllText(filePath, text);
+            Console.WriteLine("text will save in file: " + filePath);
+
+            // 8. ფაილიდან წაკითხვა
+            string readText = File.ReadAllText(filePath);
+            Console.WriteLine("\n📖 text from file:");
+            Console.WriteLine(readText);
         }
     }
 }
