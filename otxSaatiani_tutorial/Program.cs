@@ -12,6 +12,7 @@ namespace otxSaatiani_tutorial
         
         static void Main(string[] args)
         {
+            ///////////////////////////////////////////
             // start 
             Console.WriteLine(" bidzinas dedas movtynav\n " +
                 "-vnaxot aba ra moxdeba\n -putinic miyveba\n" +
@@ -22,6 +23,7 @@ namespace otxSaatiani_tutorial
                 "jerjerobit esaa\n" +
                 "//////////////////////////////////////////////\n");
             
+            ///////////////////////////////////////////
             // aq unda iyos cvladeis agwera
             int lineCount          = 0;         // ფაილში რომელზეც ვმუშაობ ლაინების შემოწმება
 
@@ -37,11 +39,18 @@ namespace otxSaatiani_tutorial
             string text            = "";        // შეყვანილი ტექსტი
             string readText        = "";        // ტექსტის ამოკითხვა
 
+            string numberedLine    = "";
+
+            ///////////////////////////////////////////
             // folder jadoebi სადაც ჩაიწერება ლოცვები იმის მიხედვით ვინ გაუშვებს ამ კოდს
-            fullPath_jado   = Path.Combine(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "..", "..")), folderName_jado);
+            fullPath_jado = Path.Combine(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "..", "..")), folderName_jado);
+
+            ///////////////////////////////////////////
             // aq unda iyos faili statistikis  
 
+            // folder შეყვანილთან მუშაობა ///////////////////////////////////////////
             // მომხმარებლის მიერ ფოლდერის შეყვანა და ფოლდერის სრული მისამართი ფოლდერის შექმნა (თუ არ არსებობს)
+            Console.WriteLine("//////////////////////////////////////////////\n");
             Console.Write("enter folder name: ");
             folderName = Console.ReadLine();
             Console.WriteLine("folder name is " + folderName);
@@ -59,32 +68,35 @@ namespace otxSaatiani_tutorial
                 Console.WriteLine("folder exist: " + fullPath);
             }
 
+            // text ფაილთან მუშაობა ///////////////////////////////////////////
             // მომხმარებლის მიერ ფაილის სახელის შეყვანა და ფაილის სრული მისამართი
+            Console.WriteLine("//////////////////////////////////////////////\n");
             Console.Write("enter file name (without .txt): ");
             fileName = Console.ReadLine() + ".txt";
             Console.WriteLine("file name is " + fileName);
             
             filePath = Path.Combine(fullPath, fileName);
 
-            // აქ ჯერ შეამოწმოს fullpath ში რა ფოლდერებია
-            // ამომიწეროს და მკითხოს ახალი ფოლდერი შევქნა თუ ავირჩიო 
-            // თუ შეყვანილი ფოლდერის სახელირომელიმეს ემთხვევა მითხრას რომ მაგაში ჩაიწრება?
-            // როგორ ავირჩიო ორით უკან ფაილი? 
-            // kai jer chavwero faili shignit da mere vnaxot aba ra da rogor gadavaketo
-
             // ტექსტის შეყვანა
             Console.Write("enter text for file: ");
             text = Console.ReadLine();
+
+            // ლაინების რაოდენობას ითვლის ფოლდერში
+            if (File.Exists(filePath))
+            {
+                lineCount = File.ReadAllLines(filePath).Length;
+                Console.WriteLine("file exists");
+                Console.WriteLine("lineCount in file is " + lineCount);
+            } else
+            {
+                Console.WriteLine("file does not exists");
+                Console.WriteLine("lineCount in file is " + lineCount);
+            }
 
             // ტექსტის ჩაწერა ფაილში 
             // File.WriteAllText(filePath, text);
             File.AppendAllText(filePath, text + Environment.NewLine); ;
             Console.WriteLine("text will save in file: " + filePath);
-
-            // ლაინების რაოდენობას ითვლის ფოლდერში
-            lineCount = File.ReadAllLines(filePath).Length;
-            Console.WriteLine("lineCount in file is " + lineCount);
-
 
             // ფაილიდან წაკითხვა
             readText = File.ReadAllText(filePath);
