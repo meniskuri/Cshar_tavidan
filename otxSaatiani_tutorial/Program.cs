@@ -12,50 +12,58 @@ namespace otxSaatiani_tutorial
         
         static void Main(string[] args)
         {
-            // programis agweraa ras aketebs
-            // rom gaushveb programas es unda ibechdebodes tavidan
-            // cvladebi aq mgoni (mere struqturebs da egetebs rom gavivli uket gavaketeb - davubrunde)
-            //
-
-            // -1 folder jadoebi სადაც ჩაიწერება ლოცვები იმის მიხედვით ვინ გაუშვებს ამ კოდს
-            string folderName_jado = "Jadoebi"; 
-            string fullPath_jado   = Path.Combine(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "..", "..")), folderName_jado);
-
-
-            // 0. ნულოვანი წერტილი საიდანაც უნდა დაიწყოს ჩემი ცვლილება 
+            // start 
             Console.WriteLine(" bidzinas dedas movtynav\n " +
-                "-vnaxot aba ra moxdeba\n -putinic miyveba \n//////////////");
+                "-vnaxot aba ra moxdeba\n -putinic miyveba\n" +
+                "//////////////////////////////////////////////\n");
+            Console.WriteLine("es programa gkitxavs folderis saxels (momxmareblis)\n" +
+                "mere gkitxavs failis saxelis (chanaweris)\n" +
+                "mere gkitxavs ra chaweros failshi\n" +
+                "jerjerobit esaa\n" +
+                "//////////////////////////////////////////////\n");
+            
+            // aq unda iyos cvladeis agwera
+            int lineCount          = 0;         // ფაილში რომელზეც ვმუშაობ ლაინების შემოწმება
 
+            string fullPath_jado   = "";        // ჯადოების ფოლდერის სრული მისამართი
+            string folderName_jado = "Jadoebi"; // ამ ფოლდერში იწერება ყველაფერი (რაც ქლაუდზე წავა)
+            
+            string folderName      = "";        // მომხმარებლის მიერ შექმნილი ფოლდერი jadoebi - ში
+            string fullPath_folder = "";        // მომხმარებლის მიერ ფოლდერის მისამართი jadoebi ფოლდერში
+            
+            string fullPath        = "";        // ფოლდერ ჯადოებში შექმნილი ფოლდერის და შიგნით ფაილის სრული მისამართი
 
+            string fileName        = "";        // მომხმარებლის მიერ შექმნილი ფაილის სახელი (.txt ს გარეშე)
+            string filePath        = "";        //
+            string text            = "";        // შეყვანილი ტექსტი
+            string readText        = "";        // ტექსტის ამოკითხვა
 
-            // 1. მომხმარებლის მიერ ფოლდერის შეყვანა
+            // folder jadoebi სადაც ჩაიწერება ლოცვები იმის მიხედვით ვინ გაუშვებს ამ კოდს
+            fullPath_jado   = Path.Combine(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "..", "..")), folderName_jado);
+            // aq unda iyos faili statistikis  
+
+            // მომხმარებლის მიერ ფოლდერის შეყვანა და ფოლდერის სრული მისამართი
             Console.Write("enter folder name: ");
-            string folderName = Console.ReadLine();
+            folderName = Console.ReadLine();
             Console.WriteLine("folder name is " + folderName);
 
-            // 2. მომხმარებლის მიერ ფაილის სახელის შეყვანა
+            fullPath_folder = Path.Combine(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "..", "..")), fullPath_jado, folderName);
+            Console.WriteLine("fullpath_folder is " + fullPath_folder);
+
+            // მომხმარებლის მიერ ფაილის სახელის შეყვანა და ფაილის სრული მისამართი
             Console.Write("enter file name (without .txt): ");
-            string fileName = Console.ReadLine() + ".txt";
+            fileName = Console.ReadLine() + ".txt";
             Console.WriteLine("file name is " + fileName);
+            
+            filePath = Path.Combine(fullPath_folder, fileName);
 
-            // 3. ფოლდერის სრული მისამართი
-            //string fullPath = Path.Combine(Environment.CurrentDirectory, folderName);
-            // ფოლდერში სადაც მთავარი .cs კოდია მანდ შექმნილ jadoebi ფოლდერში შედის ეს
-            string fullPath = Path.Combine(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "..","..")), fullPath_jado,folderName);
-            Console.WriteLine("fullpath is " + fullPath);
-           
-
-            // 3.4 აქ ჯერ შეამოწმოს fullpath ში რა ფოლდერებია
+            // აქ ჯერ შეამოწმოს fullpath ში რა ფოლდერებია
             // ამომიწეროს და მკითხოს ახალი ფოლდერი შევქნა თუ ავირჩიო 
             // თუ შეყვანილი ფოლდერის სახელირომელიმეს ემთხვევა მითხრას რომ მაგაში ჩაიწრება?
             // როგორ ავირჩიო ორით უკან ფაილი? 
             // kai jer chavwero faili shignit da mere vnaxot aba ra da rogor gadavaketo
 
-
-            // Console.WriteLine("pauza");
-            // Console.ReadLine();
-
-            // 4. ფოლდერის შექმნა (თუ არ არსებობს)
+            // ფოლდერის შექმნა (თუ არ არსებობს)
             if (!Directory.Exists(fullPath))
             {
                 Directory.CreateDirectory(fullPath);
@@ -65,21 +73,23 @@ namespace otxSaatiani_tutorial
                 Console.WriteLine("folder exist: " + fullPath);
             }
 
-            // 5. ტექსტის შეყვანა
+            // ტექსტის შეყვანა
             Console.Write("enter text for file: ");
-            string text = Console.ReadLine();
+            text = Console.ReadLine();
 
-            // 6. ფაილის სრული მისამართი
-            string filePath = Path.Combine(fullPath, fileName);
+            // ლაინების რაოდენობას ითვლის ფოლდერში
+            lineCount = File.ReadAllLines(filePath).Length;
+            Console.WriteLine("lineCount in file is " + lineCount);
 
-            // 7. ტექსტის ჩაწერა ფაილში
-            // 
-            File.WriteAllText(filePath, text); 
+            // ტექსტის ჩაწერა ფაილში
+            // File.WriteAllText(filePath, text);
+            File.AppendAllText(filePath, text + Environment.NewLine); ;
             Console.WriteLine("text will save in file: " + filePath);
+            
 
-            // 8. ფაილიდან წაკითხვა
-            string readText = File.ReadAllText(filePath);
-            Console.WriteLine("\n📖 text from file:");
+            // ფაილიდან წაკითხვა
+            readText = File.ReadAllText(filePath);
+            Console.WriteLine("text from file:");
             Console.WriteLine(readText);
         }
     }

@@ -1,42 +1,18 @@
-using System;
-using System.IO;
-
-class Program
+// ფაილში უკვე არსებული სტრიქონების რაოდენობა
+int lineCount = 0;
+if (File.Exists(filePath))
 {
-    static void Main(string[] args)
-    {
-        // 1. მომხმარებლის მიერ ფოლდერის შეყვანა
-        Console.Write("შეიყვანე ფოლდერის სახელი: ");
-        string folderName = Console.ReadLine();
-
-        // 2. მომხმარებლის მიერ ფაილის სახელის შეყვანა
-        Console.Write("შეიყვანე ფაილის სახელი (без .txt): ");
-        string fileName = Console.ReadLine() + ".txt";
-
-        // 3. ფოლდერის სრული მისამართი
-        string fullPath = Path.Combine(Environment.CurrentDirectory, folderName);
-
-        // 4. ფოლდერის შექმნა (თუ არ არსებობს)
-        if (!Directory.Exists(fullPath))
-        {
-            Directory.CreateDirectory(fullPath);
-            Console.WriteLine("ფოლდერი შეიქმნა: " + fullPath);
-        }
-
-        // 5. ტექსტის შეყვანა
-        Console.Write("შეიყვანე ტექსტი ფაილისთვის: ");
-        string text = Console.ReadLine();
-
-        // 6. ფაილის სრული მისამართი
-        string filePath = Path.Combine(fullPath, fileName);
-
-        // 7. ტექსტის ჩაწერა ფაილში
-        File.WriteAllText(filePath, text);
-        Console.WriteLine("ტექსტი შეინახა ფაილში: " + filePath);
-
-        // 8. ფაილიდან წაკითხვა
-        string readText = File.ReadAllText(filePath);
-        Console.WriteLine("\n📖 ფაილიდან წაკითხული ტექსტი:");
-        Console.WriteLine(readText);
-    }
+    lineCount = File.ReadAllLines(filePath).Length;
 }
+
+// მომხარებლის ტექსტი
+Console.Write("Enter text to write: ");
+string text = Console.ReadLine();
+
+// ნომრით სტრიქონის ფორმირება
+string numberedLine = $"{lineCount + 1}. {text}";
+
+// ჩანაწერის დამატება ფაილში
+File.AppendAllText(filePath, numberedLine + Environment.NewLine);
+
+Console.WriteLine("Text saved to: " + filePath);
