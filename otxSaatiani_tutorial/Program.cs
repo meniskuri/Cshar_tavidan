@@ -29,8 +29,6 @@ namespace otxSaatiani_tutorial
             string folderName_jado = "Jadoebi"; // ამ ფოლდერში იწერება ყველაფერი (რაც ქლაუდზე წავა)
             
             string folderName      = "";        // მომხმარებლის მიერ შექმნილი ფოლდერი jadoebi - ში
-            string fullPath_folder = "";        // მომხმარებლის მიერ ფოლდერის მისამართი jadoebi ფოლდერში
-            
             string fullPath        = "";        // ფოლდერ ჯადოებში შექმნილი ფოლდერის და შიგნით ფაილის სრული მისამართი
 
             string fileName        = "";        // მომხმარებლის მიერ შექმნილი ფაილის სახელი (.txt ს გარეშე)
@@ -47,15 +45,15 @@ namespace otxSaatiani_tutorial
             folderName = Console.ReadLine();
             Console.WriteLine("folder name is " + folderName);
 
-            fullPath_folder = Path.Combine(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "..", "..")), fullPath_jado, folderName);
-            Console.WriteLine("fullpath_folder is " + fullPath_folder);
+            fullPath = Path.Combine(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "..", "..")), fullPath_jado, folderName);
+            Console.WriteLine("fullpath_folder is " + fullPath);
 
             // მომხმარებლის მიერ ფაილის სახელის შეყვანა და ფაილის სრული მისამართი
             Console.Write("enter file name (without .txt): ");
             fileName = Console.ReadLine() + ".txt";
             Console.WriteLine("file name is " + fileName);
             
-            filePath = Path.Combine(fullPath_folder, fileName);
+            filePath = Path.Combine(fullPath, fileName);
 
             // აქ ჯერ შეამოწმოს fullpath ში რა ფოლდერებია
             // ამომიწეროს და მკითხოს ახალი ფოლდერი შევქნა თუ ავირჩიო 
