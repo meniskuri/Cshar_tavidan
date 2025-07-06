@@ -25,8 +25,6 @@ namespace otxSaatiani_tutorial
             
             ///////////////////////////////////////////
             // aq unda iyos cvladeis agwera
-            int lineCount          = 0;         // ფაილში რომელზეც ვმუშაობ ლაინების შემოწმება
-
             string fullPath_jado   = "";        // ჯადოების ფოლდერის სრული მისამართი
             string folderName_jado = "Jadoebi"; // ამ ფოლდერში იწერება ყველაფერი (რაც ქლაუდზე წავა)
             
@@ -39,7 +37,9 @@ namespace otxSaatiani_tutorial
             string text            = "";        // შეყვანილი ტექსტი
             string readText        = "";        // ტექსტის ამოკითხვა
 
-            string numberedLine    = "";
+            int lineCount          = 0;         // ფაილში რომელზეც ვმუშაობ ლაინების შემოწმება
+            string numberedLine    = "";        // სტრიქონი სადაც ჩაიწერება 1. 2. 3. ასე შემდეგ ფაილში
+            string dateFormatted   = "";        // აქ ვწერ დროს და თარიღს 
 
             ///////////////////////////////////////////
             // folder jadoebi სადაც ჩაიწერება ლოცვები იმის მიხედვით ვინ გაუშვებს ამ კოდს
@@ -93,15 +93,26 @@ namespace otxSaatiani_tutorial
                 Console.WriteLine("lineCount in file is " + lineCount);
             }
 
+            // date time
+            DateTime now = DateTime.Now;
+            Console.WriteLine(now);
+            dateFormatted = now.ToString("yyyy-MM-dd HH:mm:ss");
+
+            // ნომრით სტრიქონის ფორმირება (ჩაწერის დროს 1. 2. 3. ჩანაწერის რაოდენობა რომ გააკეთოს)
+            numberedLine = $"{lineCount + 1}. {text} {dateFormatted}";
+            Console.WriteLine(">>>> numberedLine >>>>> " + numberedLine);
+
             // ტექსტის ჩაწერა ფაილში 
             // File.WriteAllText(filePath, text);
-            File.AppendAllText(filePath, text + Environment.NewLine); ;
+            File.AppendAllText(filePath, numberedLine + Environment.NewLine); ;
             Console.WriteLine("text will save in file: " + filePath);
 
             // ფაილიდან წაკითხვა
             readText = File.ReadAllText(filePath);
             Console.WriteLine("text from file:");
             Console.WriteLine(readText);
+
+            // ეს კოდი ელექტრას ეძღვნება
         }
     }
 }
