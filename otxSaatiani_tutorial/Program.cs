@@ -14,9 +14,7 @@ namespace otxSaatiani_tutorial
         {
             ///////////////////////////////////////////
             // start 
-            Console.WriteLine(" bidzinas dedas movtynav\n " +
-                "-vnaxot aba ra moxdeba\n -putinic miyveba\n" +
-                "//////////////////////////////////////////////\n");
+            Console.WriteLine(" tsmti bibis mode v.1 \n");
             Console.WriteLine("es programa gkitxavs folderis saxels (momxmareblis)\n" +
                 "mere gkitxavs failis saxelis (chanaweris)\n" +
                 "mere gkitxavs ra chaweros failshi\n" +
