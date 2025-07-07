@@ -75,6 +75,7 @@ namespace otxSaatiani_tutorial
 
                     foreach (string dir in directories)
                     {
+                        Console.WriteLine(dir);
                         Console.WriteLine("- " + Path.GetFileName(dir));
                     }
                 }
@@ -105,12 +106,14 @@ namespace otxSaatiani_tutorial
                             Console.WriteLine("dawere ki an ara");
                         }
                     }
+                    // მგონი აქ უნდა გავაგრძელო მუშაობა
                 }
                 // test dawera sad sheva
                 Console.WriteLine("//////////");
                 Console.WriteLine("sheqmili_folder is " + sheqmnili_folder);
                 Console.WriteLine(directories[0]);
                 Console.WriteLine(directories[1]);
+
 
                 // folder შეყვანილთან მუშაობა ///////////////////////////////////////////
                 // მომხმარებლის მიერ ფოლდერის შეყვანა და ფოლდერის სრული მისამართი ფოლდერის შექმნა (თუ არ არსებობს)
@@ -198,8 +201,7 @@ namespace otxSaatiani_tutorial
                 {
                     Console.Write("ginda gagrdzeleba (ki/ara) ?");
                     kitxva_loop = Console.ReadLine()?.ToLower();
-                    // აქ შეიძლება შეცდომა ამოვარდეს უნდა დავიცვა კი ან არა რომ იყოს მარტო
-                    // და გამორთვა შეიძლება სხვანაირად დამჭირდეს
+                    
                     if (kitxva_loop == "ki" || kitxva_loop == "KI")
                     {
                         Console.WriteLine("ki");
