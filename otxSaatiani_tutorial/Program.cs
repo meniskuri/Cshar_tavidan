@@ -39,12 +39,13 @@ namespace otxSaatiani_tutorial
             string numberedLine    = "";        // სტრიქონი სადაც ჩაიწერება 1. 2. 3. ასე შემდეგ ფაილში
             string dateFormatted   = "";        // აქ ვწერ დროს და თარიღს 
 
+            string fileStatistics  = "statistics.txt"; // სტატისტიკის ფაილი (ჩაიწერება რამდენჯერ გაეშვა კოდი) ვინ გაუშვა რა დროს და სად რა ცვლილება მოახდინა? გავართულო?
+            string fileStatPath    = "";
+            string numberedLine_stat = "";
+
             ///////////////////////////////////////////
             // folder jadoebi სადაც ჩაიწერება ლოცვები იმის მიხედვით ვინ გაუშვებს ამ კოდს
             fullPath_jado = Path.Combine(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "..", "..")), folderName_jado);
-
-            ///////////////////////////////////////////
-            // aq unda iyos faili statistikis  
 
             // folder შეყვანილთან მუშაობა ///////////////////////////////////////////
             // მომხმარებლის მიერ ფოლდერის შეყვანა და ფოლდერის სრული მისამართი ფოლდერის შექმნა (თუ არ არსებობს)
@@ -105,7 +106,18 @@ namespace otxSaatiani_tutorial
             File.AppendAllText(filePath, numberedLine + Environment.NewLine); ;
             Console.WriteLine("text will save in file: " + filePath);
 
-            // ფაილიდან წაკითხვა
+            ///////////////////////////////////////////
+            // statistic ფაილი  
+            Console.WriteLine("//////////////////////////////////////////////\n");
+            fileStatPath = Path.Combine(fullPath_jado, fileStatistics);
+            numberedLine_stat = $"{lineCount + 1}. {"cvlileba sheitana: "} {folderName} {dateFormatted}";
+
+            File.AppendAllText(fileStatPath, numberedLine_stat + Environment.NewLine); ;
+            Console.WriteLine("statistic text will save in file: " + fileStatPath);
+
+            ///////////////////////////////////////////
+            // ფაილიდან წაკითხვა (+ უნდა იყოს რამდენჯერ გაეშვა კოდი წაკითხული)
+            Console.WriteLine("//////////////////////////////////////////////\n");
             readText = File.ReadAllText(filePath);
             Console.WriteLine("text from file:");
             Console.WriteLine(readText);
