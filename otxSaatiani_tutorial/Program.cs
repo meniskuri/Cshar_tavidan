@@ -43,9 +43,35 @@ namespace otxSaatiani_tutorial
             string fileStatPath    = "";
             string numberedLine_stat = "";
 
+            string showFolders     = "";         // გეკითხება გინდა თუარა ნახო ფოლდერების სიაო
+                                                 
             ///////////////////////////////////////////
             // folder jadoebi სადაც ჩაიწერება ლოცვები იმის მიხედვით ვინ გაუშვებს ამ კოდს
             fullPath_jado = Path.Combine(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "..", "..")), folderName_jado);
+
+            Console.WriteLine("\n↓ folderebis sia ↓");
+
+            if (Directory.Exists(fullPath_jado))
+            {
+                string[] directories = Directory.GetDirectories(fullPath_jado);
+
+                if (directories.Length == 0)
+                {
+                    Console.WriteLine("folderebi ar aris.");
+                }
+                else
+                {
+                    foreach (string dir in directories)
+                    {
+                        Console.WriteLine("- " + Path.GetFileName(dir));
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("folderi jadoebi ar arsebobs.");
+            }
+
 
             // folder შეყვანილთან მუშაობა ///////////////////////////////////////////
             // მომხმარებლის მიერ ფოლდერის შეყვანა და ფოლდერის სრული მისამართი ფოლდერის შექმნა (თუ არ არსებობს)
