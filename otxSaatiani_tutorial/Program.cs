@@ -198,6 +198,26 @@ namespace otxSaatiani_tutorial
                 // text ფაილთან მუშაობა ///////////////////////////////////////////
                 // მომხმარებლის მიერ ფაილის სახელის შეყვანა და ფაილის სრული მისამართი
                 Console.WriteLine("//////////////////////////////////////////////\n");
+
+                // რომელ ფოლდერშიც ხარ შესული ჩანაწერის გასაკეთებლად ნახულობს ფაილების სიას
+                string[] files = Directory.GetFiles(fullPath);
+
+                if (files.Length == 0)
+                {
+                    Console.WriteLine("ფაილები არ მოიძებნა ფოლდერში.");
+                }
+                else
+                {
+                    Console.WriteLine("↓ ფაილების სია ↓");
+                    foreach (string file in files)
+                    {
+                        Console.WriteLine("- " + Path.GetFileName(file));
+                    }
+                }
+
+                // გკითხოს რომელ ფაილში შევიდეს? 
+
+                Console.WriteLine("/////////////\n");
                 Console.Write("enter file name (without .txt): ");
                 fileName = Console.ReadLine() + ".txt";
                 Console.WriteLine("file name is " + fileName);
