@@ -36,6 +36,7 @@ namespace otxSaatiani_tutorial
             string readText        = "";        // ტექსტის ამოკითხვა
 
             int lineCount          = 0;         // ფაილში რომელზეც ვმუშაობ ლაინების შემოწმება
+            int lineCount_stat     = 0;         // statistic ფაილში ლაინების დათვლა
             string numberedLine    = "";        // სტრიქონი სადაც ჩაიწერება 1. 2. 3. ასე შემდეგ ფაილში
             string dateFormatted   = "";        // აქ ვწერ დროს და თარიღს 
 
@@ -90,38 +91,96 @@ namespace otxSaatiani_tutorial
                         kitxva_loop_folders = Console.ReadLine()?.ToLower();
                         if (kitxva_loop_folders == "ki")
                         {
-                            //
                             sheqmnili_folder = true;
                             break;
                         }
                         else if (kitxva_loop_folders == "ara")
                         {
-                            //
                             sheqmnili_folder = false;
                             break;
                         }
                         else
                         {
-                            //
                             Console.WriteLine("dawere ki an ara");
                         }
                     }
-                    // მგონი აქ უნდა გავაგრძელო მუშაობა
                 }
-                // test dawera sad sheva
-                Console.WriteLine("//////////");
-                Console.WriteLine("sheqmili_folder is " + sheqmnili_folder);
-                Console.WriteLine(directories[0]);
-                Console.WriteLine(directories[1]);
-
+                
 
                 // folder შეყვანილთან მუშაობა ///////////////////////////////////////////
                 // მომხმარებლის მიერ ფოლდერის შეყვანა და ფოლდერის სრული მისამართი ფოლდერის შექმნა (თუ არ არსებობს)
                 Console.WriteLine("//////////////////////////////////////////////\n");
-                Console.Write("enter folder name: ");
-                folderName = Console.ReadLine();
-                Console.WriteLine("folder name is " + folderName);
+                if (directories.Length == 0)
+                {
+                    Console.Write("enter folder name: ");
+                    folderName = Console.ReadLine();
+                    Console.WriteLine("folder name is " + folderName);
+                }
+                else if (directories.Length != 0 && sheqmnili_folder == true)
+                {
+                    // sheqmnili_folder = true
+                    while (true)
+                    {
+                        Console.WriteLine("//////");
+                        Console.WriteLine("sheiyvanet arsebuli folderis saxeli");
+                        Console.WriteLine("\n↓ folderebis sia ↓");
 
+                        foreach (string dir in directories)
+                        {
+                            Console.WriteLine(dir);
+                            Console.WriteLine("- " + Path.GetFileName(dir));
+                        }
+
+                        Console.Write("enter folder name (sheqmnili_folder = ture): ");
+                        folderName = Console.ReadLine();
+
+                        if (directories.Any(dir => Path.GetFileName(dir) == folderName))
+                        {
+                            Console.WriteLine("monacemebi arsebobs masivshi rogorc folderi saxeli.");
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("ERROR :sheiyvanet arsebuli folderis saxeli");
+                        }
+                    }
+                }
+                else if (directories.Length != 0 && sheqmnili_folder == false)
+                {
+                    // sheqmnili_folder = false
+                    while (true)
+                    {
+                        Console.WriteLine("//////");
+                        Console.WriteLine("sheiyvanet ar arsebuli folderis saxeli");
+                        Console.WriteLine("\n↓ folderebis sia ↓");
+
+                        foreach (string dir in directories)
+                        {
+                            Console.WriteLine(dir);
+                            Console.WriteLine("- " + Path.GetFileName(dir));
+                        }
+
+                        Console.Write("enter folder name (sheqmnili_folder = false): ");
+                        folderName = Console.ReadLine();
+
+                        if (directories.Any(dir => Path.GetFileName(dir) != folderName))
+                        {
+                            Console.WriteLine("monacemebi ar arsebobs masivshi rogorc folderi saxeli.");
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("ERROR :sheiyvanet ar arsebuli folderis saxeli");
+                        }
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("ERROR: >>>>>>>>>>> chedavs <<<<<<<<<<<<<<<");
+                }
+                
+                // ფოლდერის შექმნა 
                 fullPath = Path.Combine(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "..", "..")), fullPath_jado, folderName);
                 Console.WriteLine("fullpath is " + fullPath);
 
@@ -146,10 +205,25 @@ namespace otxSaatiani_tutorial
                 filePath = Path.Combine(fullPath, fileName);
 
                 // ტექსტის შეყვანა
+                Console.WriteLine("/////////////////\n");
                 Console.Write("enter text for file: ");
                 text = Console.ReadLine();
 
-                // ლაინების რაოდენობას ითვლის ფოლდერში
+                fileStatPath = Path.Combine(fullPath_jado, fileStatistics);
+                // ლაინების რაოდენობას ითვლის სტატ ფაილში
+                if (File.Exists(fileStatPath))
+                {
+                    lineCount_stat = File.ReadAllLines(fileStatPath).Length;
+                    Console.WriteLine("file exists");
+                    Console.WriteLine("lineCount_stat in file is " + lineCount_stat);
+                }
+                else
+                {
+                    Console.WriteLine("file does not exists");
+                    Console.WriteLine("lineCount_stat in file is " + lineCount_stat);
+                }
+                
+                // ლაინების რაოდენობას ითვლის რასაც ქმნი იქ
                 if (File.Exists(filePath))
                 {
                     lineCount = File.ReadAllLines(filePath).Length;
@@ -171,22 +245,19 @@ namespace otxSaatiani_tutorial
                 numberedLine = $"{lineCount + 1}. {text} {dateFormatted}";
                 Console.WriteLine(">>>> numberedLine >>>>> " + numberedLine);
 
+                // statistic ფაილი  
+                Console.WriteLine("///////////////\n");
+                numberedLine_stat = $"{lineCount_stat + 1}. {"cvlileba sheitana: "} {folderName} {dateFormatted}";
+
+                File.AppendAllText(fileStatPath, numberedLine_stat + Environment.NewLine); ;
+                Console.WriteLine("statistic text will save in file: " + fileStatPath);
+
                 // ტექსტის ჩაწერა ფაილში 
                 // File.WriteAllText(filePath, text);
                 File.AppendAllText(filePath, numberedLine + Environment.NewLine); ;
                 Console.WriteLine("text will save in file: " + filePath);
 
-
-                ///////////////////////////////////////////
-                // statistic ფაილი  
-                Console.WriteLine("//////////////////////////////////////////////\n");
-                fileStatPath = Path.Combine(fullPath_jado, fileStatistics);
-                numberedLine_stat = $"{lineCount + 1}. {"cvlileba sheitana: "} {folderName} {dateFormatted}";
-
-                File.AppendAllText(fileStatPath, numberedLine_stat + Environment.NewLine); ;
-                Console.WriteLine("statistic text will save in file: " + fileStatPath);
-
-
+                
                 ///////////////////////////////////////////
                 // ფაილიდან წაკითხვა (+ უნდა იყოს რამდენჯერ გაეშვა კოდი წაკითხული)
                 Console.WriteLine("//////////////////////////////////////////////\n");
