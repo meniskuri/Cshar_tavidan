@@ -25,6 +25,11 @@ namespace wigni_1
                 Console.WriteLine($"{k} + {y} = {result}");
             }
 
+            string GetMessage()
+            {
+                return "Hello kapana";
+            }
+
             //////////////////////////////////////
             Console.WriteLine("wignis mecadineoba daviwye");
             Console.WriteLine(3.2e3);   
@@ -77,6 +82,7 @@ namespace wigni_1
             //
             SayHello();
             Sum(1, 2);
+            Console.WriteLine(GetMessage());
         }
     }
 }
