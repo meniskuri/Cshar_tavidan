@@ -83,6 +83,47 @@ namespace wigni_1
             SayHello();
             Sum(1, 2);
             Console.WriteLine(GetMessage());
+
+            // test method
+            Console.WriteLine("////////// test method ///////////");
+            void Sum2(int initialValue, params int[] numbers2)
+            {
+                int result2 = initialValue;
+                foreach (var n in numbers2)
+                {
+                    result2 += n;
+                }
+                Console.WriteLine(result2);
+            }
+
+            int[] nums = { 1, 2, 3, 4, 5 };
+            Sum2(10, nums);  // число 10 - передается параметру initialValue
+            Sum2(20);
+
+
+            // test faqtorial 
+            Console.WriteLine("////////// test method ///////////");
+            int Factorial(int n)
+            {
+                if (n == 1) return 1;
+
+                return n * Factorial(n - 1);
+            }
+            Console.WriteLine(Factorial(3));
+
+            // test fibonachi 
+            Console.WriteLine("////////// fibonachi method ///////////");
+            int Fibonachi(int n)
+            {
+                if (n == 0 || n == 1) return n;
+
+                return Fibonachi(n - 1) + Fibonachi(n - 2);
+            }
+
+            for (int t = 0; t<=9; t++)
+            {
+                Console.WriteLine(Fibonachi(t));
+            }
         }
     }
 }
