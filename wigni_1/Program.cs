@@ -124,6 +124,24 @@ namespace wigni_1
             {
                 Console.WriteLine(Fibonachi(t));
             }
+
+            // test funqcia 
+            int Sum3(int[] numbers3)
+            {
+                int result = 0;
+                int limit = 0;
+                foreach (int number in numbers3)
+                {
+                    if (IsPassed(number, limit)) result += number;
+                }
+                return result;
+            }
+            static bool IsPassed(int number, int lim)
+            static bool IsPassed(int number, int lim)
+            {
+                //return number > limit; // Ошибка: метод IsPassed не имеет доступа к переменной limit
+                return number > lim;
+            }
         }
     }
 }
