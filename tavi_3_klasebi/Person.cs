@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 
 namespace tavi_3_klasebi
 {
-    internal class Person
+    public class Person
     {
         //
-        public string name = "Undefined";   // имя
-        public int age;                     // возраст
-
+        public string name;
+        public int age;
+        public Person(string name, int age)
+        {
+            Console.WriteLine("Создание объекта Person");
+            this.name = name;
+            this.age = age;
+        }
         public void Print()
         {
             Console.WriteLine($"Имя: {name}  Возраст: {age}");
