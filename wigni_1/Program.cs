@@ -126,6 +126,7 @@ namespace wigni_1
             }
 
             // test funqcia 
+            Console.WriteLine("/////////// test funqcia //////////");
             int Sum3(int[] numbers3)
             {
                 int result = 0;
@@ -136,12 +137,24 @@ namespace wigni_1
                 }
                 return result;
             }
-            static bool IsPassed(int number, int lim)
-            static bool IsPassed(int number, int lim)
+            // static bool IsPassed(int number, int lim)
+            bool IsPassed(int number, int lim)
             {
                 //return number > limit; // Ошибка: метод IsPassed не имеет доступа к переменной limit
                 return number > lim;
             }
+            int[] numbers11 = { -3, -2, -1, 0, 1, 2, 3 };
+            int[] numbers12 = { 3, -4, 5, -6, 7 };
+
+            Console.WriteLine(Sum3(numbers11));
+            Console.WriteLine(Sum3(numbers12));
+
+            // enum 
+            Console.WriteLine("/////////// test enum //////////");
+            // amas ver vaketeb da ar aketdeba
+            
+            
+            //
         }
     }
 }
