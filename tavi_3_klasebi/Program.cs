@@ -9,6 +9,7 @@ namespace tavi_3_klasebi
 {
     internal class Program
     {
+        // ეს აქ უნდა იყოს?
         class Person3
         {
             string name;
