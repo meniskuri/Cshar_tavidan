@@ -5,6 +5,7 @@ using klasebi_mecadineoba;
 Console.WriteLine("Hello, jadoqar anu kapan!");
 
 // obieqtebi
+
 Person gio = new ();
 gio.name = "aruza";
 gio.Print();
@@ -22,7 +23,8 @@ Adamiani tom = new ();
 tom.Print();    // Имя:Tom  Возраст: 1
 
 Console.WriteLine("//////////////");
-Adamiani2 tamri = new("tamri",57);
+// Adamiani2 tamri = new("tamri",57);
+Adamiani2 tamri = new Adamiani2 { name = "tamri", age =57};
 tamri.Print();
 
 struct Adamiani
