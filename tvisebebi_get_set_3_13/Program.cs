@@ -1,19 +1,35 @@
 ﻿// See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, World!");
 
+// obieqtebi 
 Person person = new Person { Name = "gio" };
 
 Person2 person2 = new Person2("giorgi", 33);
 Console.WriteLine(person2.Name);
 
-// Устанавливаем свойство - срабатывает блок Set
-// значение "Tom" и есть передаваемое в свойство value
-// person.Name = "Tom";
-
-// Получаем значение свойства и присваиваем его переменной - срабатывает блок Get
 string personName = person.Name;
 Console.WriteLine(personName);  // Tom
 
+// test nullable 
+Console.WriteLine("////////// nullable //////////");
+string? name = null;
+
+PrintUpper(name!);
+
+void PrintUpper(string text)
+{
+    // if (text == null) Console.WriteLine("null");
+    //else Console.WriteLine(text.ToUpper());
+    // Console.WriteLine(text.ToUpper());
+}
+
+
+
+
+
+
+
+///  klasebi
 class Person
 {
     private string name = "Undefined";
