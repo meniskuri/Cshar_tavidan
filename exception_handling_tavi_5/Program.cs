@@ -29,3 +29,31 @@ catch (Exception e)
 {
     Console.WriteLine($"Ошибка: {e.Message}");
 }
+
+// კლასში შექმნილი throw 
+
+try
+{
+    Person person = new Person { Name = "Tom", Age = 17 };
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Ошибка: {ex.Message}");
+}
+
+class Person
+{
+    private int age;
+    public string Name { get; set; } = "";
+    public int Age
+    {
+        get => age;
+        set
+        {
+            if (value < 18)
+                throw new Exception("Лицам до 18 регистрация запрещена");
+            else
+                age = value;
+        }
+    }
+}
