@@ -33,6 +33,10 @@ var tamri = new Person_sort("tamri", 56);
 var gio = new Person_sort("gio", 33);
 var aruz = new Person_sort("aruz", 62);
 
+Console.WriteLine(gio);
+Console.WriteLine(gio.Name.CompareTo(tamri.Name));
+gio.Name.CompareTo(tamri.Name);
+
 Person_sort[] people = { tamri, gio, aruz };
 Array.Sort(people);
 
@@ -46,7 +50,7 @@ foreach (Person_sort person in people)
 
 
 // interface shevqmeni
-class Person_sort : IComparable
+class Person_sort : IComparable // kitxva maqvs 
 {
     public string Name { get; }
     public int Age { get; set; }
