@@ -1,7 +1,7 @@
-﻿// shevqmna obieqti
-using System;
+﻿using System;
 using System.Xml.Linq;
 
+// shevqmna obieqti
 IMovable modzraoba = new Modzraoba();
 modzraoba.Name = "giorgi";
 modzraoba.Move();
@@ -21,15 +21,46 @@ int b = 8;
 int max = GetMax(a, b);
 Console.WriteLine(max); // 8
 
+///////////////////
 
 var tom = new Person("Tom", 23);
 var bob = (Person)tom.Clone();
 bob.Name = "Bob";
 Console.WriteLine(tom.Name); // Tom
 
+// სორტიროვკა 
+var tamri = new Person_sort("tamri", 56);
+var gio = new Person_sort("gio", 33);
+var aruz = new Person_sort("aruz", 62);
+
+Person_sort[] people = { tamri, gio, aruz };
+Array.Sort(people);
+
+foreach (Person_sort person in people)
+{
+    Console.WriteLine($"{person.Name} - {person.Age}");
+}
+
+
+
 
 
 // interface shevqmeni
+class Person_sort : IComparable
+{
+    public string Name { get; }
+    public int Age { get; set; }
+    public Person_sort(string name, int age)
+    {
+        Name = name; Age = age;
+    }
+    public int CompareTo(object? o)
+    {
+        if (o is Person_sort person_s) return Age.CompareTo(person_s.Age);
+        else throw new ArgumentException("Некорректное значение параметра");
+    }
+}
+
 class Person : ICloneable // kitxva maqvs 
 {
     public string Name { get; set; }
@@ -71,5 +102,6 @@ class Modzraoba : IMovable
     }
     public string Name { get; set; }
 }
+
 
 
