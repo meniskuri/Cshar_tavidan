@@ -45,6 +45,18 @@ n = 100; // ცვლის `n`, მაგრამ არა `numbers[0]`
 Console.WriteLine(numbers[0]);
 Console.WriteLine(n);
 
+int x = 5;
+ref int xRef = ref x;
+xRef = 99;
+Console.WriteLine(x);
+Console.WriteLine(xRef);
+
+// კორტეჟები tuples 
+Console.WriteLine("/// tuples ///");
+(int, string, bool) data = (25, "hello", true);
+Console.WriteLine(data.Item1);
+
+
 
 
 // klasi veqtorebze
