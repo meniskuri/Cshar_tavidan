@@ -33,6 +33,19 @@ Console.WriteLine(matrix[0, 2]);
 matrix[0, 0] = 111;
 Console.WriteLine(matrix[0, 0]);
 
+// მაგალითი — ჩვეულებრივი return vs ref return
+Console.WriteLine("/// return vs ref return ///");
+int[] numbers = { 1, 2, 3 };
+
+ref int GetNumber(int index) => ref numbers[index]; // აბრუნებს კოპიას
+
+ref int n = ref GetNumber(0);
+Console.WriteLine(n);
+n = 100; // ცვლის `n`, მაგრამ არა `numbers[0]`
+Console.WriteLine(numbers[0]);
+Console.WriteLine(n);
+
+
 
 // klasi veqtorebze
 class Matrix
