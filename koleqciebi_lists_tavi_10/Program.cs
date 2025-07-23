@@ -1,4 +1,5 @@
-﻿// lists  (sheicavs uamrav metodebs - chamateba  gamokleba povna da ase shemdeg)
+﻿/////////////////////////
+// lists  (sheicavs uamrav metodebs - chamateba  gamokleba povna da ase shemdeg)
 
 List<string> people = new List<string>() { "aruza babua", "tamri bibia"};
 List<string> wamebulebi = ["zura jafaridze"];
@@ -27,6 +28,26 @@ foreach (Person person in peopleGeorgia)
     Console.WriteLine(person.Name);
 }
 
+
+/////////////////////////
+// Двухсвязный список LinkedList<T>
+Console.WriteLine("LinkedList<T>");
+var employees = new List<string> { "Tom", "Sam", "Bob" };
+
+LinkedList<string> xalxi = new LinkedList<string>(employees);
+LinkedListNode<string>? current = xalxi.First;
+
+
+foreach (string person in xalxi)
+{
+    Console.WriteLine(current.Value);
+    Console.WriteLine(person);
+}
+
+
+
+
+/////////////////////////
 // klasebi 
 class Person
 {
