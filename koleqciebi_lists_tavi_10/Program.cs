@@ -155,6 +155,47 @@ Console.WriteLine(n);
 }
 numbers.mesiji();
 
+
+//////////////////////////
+/// Класс Array и массивы
+Console.WriteLine("Класс Array и массивы");
+
+//////////////////////////
+/// Span
+Console.WriteLine("Span");
+int[] numbers_spn = { 1, 2, 3, 4, 5 };
+Span<int> span = numbers_spn;
+
+// span[0] = 42;
+Console.WriteLine(span[0]);
+Console.WriteLine(numbers_spn[0]);  // 42 — because span modifies original array
+
+
+//////////////////////////
+/// Индексы и диапазоны
+Console.WriteLine("Индексы и диапазоны");
+
+Index myIndex1 = 2;     // третий элемент
+Index myIndex2 = ^2;    // предпоследний элемент
+
+string[] people_diap = { "Tom", "Bob", "Sam", "Kate", "Alice" };
+string selected1 = people_diap[myIndex1];    // Sam
+string selected2 = people_diap[myIndex2];    // Kate
+Console.WriteLine(selected1);
+Console.WriteLine(selected2);
+
+Console.WriteLine("///");
+string[] peopleRange = people_diap[1..4]; // получаем 2, 3 и 4-й элементы из массива
+foreach (var person in peopleRange)
+{
+    Console.WriteLine(person);
+}
+
+
+/////////////////////////
+// klasebi 
+
+
 class Numbers
 {
 
@@ -165,19 +206,11 @@ class Numbers
             yield return i * i;
         }
     }
-    
+
     public void mesiji() => Console.WriteLine("ra xdeba");
 }
 
 
-
-
-
-
-
-
-/////////////////////////
-// klasebi 
 
 class WeekEnumerator : IEnumerator
 {
@@ -215,7 +248,7 @@ class Week
 
 
 class Person
-{
+{   
     public string Name { get; }
     public Person(string name) => Name = name;
 }
