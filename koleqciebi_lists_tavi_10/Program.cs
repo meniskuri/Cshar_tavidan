@@ -4,6 +4,7 @@
 List<string> people = new List<string>() { "aruza babua", "tamri bibia"};
 List<string> wamebulebi = ["zura jafaridze"];
 
+
 people.Add("gio");
 people.Add("txovs gmerts gamoasworebinos codvebi");
 
@@ -44,8 +45,23 @@ foreach (string person in xalxi)
     Console.WriteLine(person);
 }
 
+/////////////////////////
+//Queue (Очередь) — ეს არის მონაცემთა სტრუქტურა, რომელიც მუშაობს პრინციპით:
+Console.WriteLine("/////// Queue ////////");
+Queue<string> people_rigshi = new Queue<string>();
+
+people_rigshi.Enqueue("Tom");
+people_rigshi.Enqueue("Bob");
+people_rigshi.Enqueue("Sam");
+
+string first = people_rigshi.Dequeue();  // წაიკითხავს Tom-ს და ამოიღებს რიგიდან
+// Console.WriteLine(first);         // → Tom
 
 
+foreach (string adamiani in people_rigshi)
+{
+    Console.WriteLine(adamiani);
+}
 
 /////////////////////////
 // klasebi 
