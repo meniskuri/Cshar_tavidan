@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-
+using System.Collections;
 
 /////////////////////////
 // lists  (sheicavs uamrav metodebs - chamateba  gamokleba povna da ase shemdeg)
@@ -115,6 +115,64 @@ var people_observ = new ObservableCollection<string>
 
 people_observ[2] = "nini indieli";
 Console.WriteLine(people_observ[2]);   // Tom
+
+
+//////////////////////////
+/// Интерфейсы IEnumerable и IEnumerator
+Console.WriteLine("Интерфейсы IEnumerable и IEnumerator");
+Console.WriteLine("davitastan ertad es gavarchio <<<<<<<");
+
+string[] people_IEnum = { "ravi", "aba", "es ra aris?" };
+
+IEnumerator peopleEnumerator = people_IEnum.GetEnumerator(); // получаем IEnumerator
+while (peopleEnumerator.MoveNext())   // пока не будет возвращено false
+{
+    string item = (string)peopleEnumerator.Current; // получаем элемент на текущей позиции
+    Console.WriteLine(item);
+}
+peopleEnumerator.Reset(); // сбрасываем указатель в начало массива
+
+
+Week week = new Week();
+foreach (var day in week)
+{
+    Console.WriteLine(day);
+}
+
+
+class WeekEnumerator : IEnumerator
+{
+    string[] days;
+    int position = -1;
+    public WeekEnumerator(string[] days) => this.days = days;
+    public object Current
+    {
+        get
+        {
+            if (position == -1 || position >= days.Length)
+                throw new ArgumentException();
+            return days[position];
+        }
+    }
+    public bool MoveNext()
+    {
+        if (position < days.Length - 1)
+        {
+            position++;
+            return true;
+        }
+        else
+            return false;
+    }
+    public void Reset() => position = -1;
+}
+class Week
+{
+    string[] days = { "Monday", "Tuesday", "Wednesday", "Thursday",
+                            "Friday", "Saturday", "Sunday" };
+    public IEnumerator GetEnumerator() => new WeekEnumerator(days);
+}
+
 
 
 /////////////////////////
