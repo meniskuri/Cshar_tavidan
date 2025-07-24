@@ -128,6 +128,7 @@ IEnumerator peopleEnumerator = people_IEnum.GetEnumerator(); // получаем
 while (peopleEnumerator.MoveNext())   // пока не будет возвращено false
 {
     string item = (string)peopleEnumerator.Current; // получаем элемент на текущей позиции
+    Console.WriteLine("aq var?");
     Console.WriteLine(item);
 }
 peopleEnumerator.Reset(); // сбрасываем указатель в начало массива
@@ -139,6 +140,44 @@ foreach (var day in week)
     Console.WriteLine(day);
 }
 
+
+
+
+//////////////////////////
+/// Итераторы и оператор yield
+Console.WriteLine("Итераторы и оператор yield");
+Console.WriteLine("davitastan ertad es gavarchio <<<<<<<");
+
+Numbers numbers = new Numbers();
+foreach (int n in numbers)
+{
+Console.WriteLine(n);
+}
+numbers.mesiji();
+
+class Numbers
+{
+
+    public IEnumerator<int> GetEnumerator()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            yield return i * i;
+        }
+    }
+    
+    public void mesiji() => Console.WriteLine("ra xdeba");
+}
+
+
+
+
+
+
+
+
+/////////////////////////
+// klasebi 
 
 class WeekEnumerator : IEnumerator
 {
@@ -175,8 +214,6 @@ class Week
 
 
 
-/////////////////////////
-// klasebi 
 class Person
 {
     public string Name { get; }
