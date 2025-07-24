@@ -63,6 +63,46 @@ foreach (string adamiani in people_rigshi)
     Console.WriteLine(adamiani);
 }
 
+
+///////////////////////// 
+/// Коллекция Stack<T>
+Console.WriteLine("/////// Queue ////////");
+var dzmebi = new List<string> { "vaso", "leaniko", "teo", "azo" };
+Stack<string> people_stack = new Stack<string>(dzmebi);
+
+
+people_stack.Push("kapana anu jadoqari");
+
+foreach (string person in people_stack)
+{
+    Console.WriteLine(person);
+}
+
+
+//////////////////////////
+/// Коллекция Dictionary<K, V>
+Console.WriteLine("/////// Коллекция Dictionary<K, V> ////////");
+var mike = new KeyValuePair<int, string>(56, "Mike");
+var employees_dic = new List<KeyValuePair<int, string>>() { mike };
+
+
+var people_dict = new Dictionary<int, string>(employees_dic)
+{
+    { 5, "Tom"},
+    { 3, "Sam"},
+    { 11, "Bob"}
+};
+
+string sam = people[3];  // Sam
+Console.WriteLine(sam);  // Sam
+
+foreach (var person in people_dict)
+{
+    Console.WriteLine($"key: {person.Key}  value: {person.Value}");
+}
+
+
+
 /////////////////////////
 // klasebi 
 class Person
