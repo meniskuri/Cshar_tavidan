@@ -1,4 +1,7 @@
-﻿/////////////////////////
+﻿using System.Collections.ObjectModel;
+
+
+/////////////////////////
 // lists  (sheicavs uamrav metodebs - chamateba  gamokleba povna da ase shemdeg)
 
 List<string> people = new List<string>() { "aruza babua", "tamri bibia"};
@@ -101,6 +104,17 @@ foreach (var person in people_dict)
     Console.WriteLine($"key: {person.Key}  value: {person.Value}");
 }
 
+
+//////////////////////////
+/// Класс ObservableCollection
+Console.WriteLine("///// Класс ObservableCollection //////");
+var people_observ = new ObservableCollection<string>
+{
+    "gvanca", "keto", "marika"
+};
+
+people_observ[2] = "nini indieli";
+Console.WriteLine(people_observ[2]);   // Tom
 
 
 /////////////////////////
