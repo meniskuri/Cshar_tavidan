@@ -69,7 +69,7 @@ foreach (string adamiani in people_rigshi)
 
 ///////////////////////// 
 /// Коллекция Stack<T>
-Console.WriteLine("/////// Queue ////////");
+Console.WriteLine("/////// Коллекция Stack<T> ////////");
 var dzmebi = new List<string> { "vaso", "leaniko", "teo", "azo" };
 Stack<string> people_stack = new Stack<string>(dzmebi);
 
@@ -139,6 +139,8 @@ foreach (var day in week)
 {
     Console.WriteLine(day);
 }
+
+
 
 
 
