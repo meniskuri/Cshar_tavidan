@@ -38,3 +38,21 @@ void PrintValue(string val)
               """;
     Console.WriteLine(text);
 }
+
+
+///////////////////////////////////////
+/// Операции со строками
+var files = new string[]
+{
+    "myapp.exe",
+    "forest.jpg",
+    "main.exe",
+    "book.pdf",
+    "river.png"
+};
+
+for (int i = 0; i < files.Length; i++)
+{
+    if (files[i].EndsWith(".exe"))
+        Console.WriteLine(files[i]);
+}
