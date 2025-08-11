@@ -46,3 +46,25 @@ async Task PrintAsync3(string message)
     await Task.Delay(new Random().Next(1000, 2000));     // имитация продолжительной операции
     Console.WriteLine(message);
 }
+
+Console.WriteLine("///////////////");
+
+try
+{
+    await PrintAsync4("Hello METANIT.COM");
+    await PrintAsync4("Hi");
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex.Message);
+}
+
+async Task PrintAsync4(string message)
+{
+    // если длина строки меньше 3 символов, генерируем исключение
+    if (message.Length < 3)
+        throw new ArgumentException($"Invalid string length: {message.Length}");
+    await Task.Delay(100);     // имитация продолжительной операции
+    Console.WriteLine(message);
+}
+
