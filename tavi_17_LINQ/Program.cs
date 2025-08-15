@@ -45,6 +45,30 @@ var result = people.Skip(2);    // "Bob", "Mike", "Kate"
 foreach (var person in result)
     Console.WriteLine(person);
 
+Console.WriteLine("////////////////");
+// დაჯგუფება  
+
+
+Person2[] people3 =
+{
+    new Person2("Tom", "Microsoft"), new Person2("Sam", "Google"),
+    new Person2("Bob", "JetBrains"), new Person2("Mike", "Microsoft"),
+    new Person2("Kate", "JetBrains"), new Person2("Alice", "Microsoft"),
+};
+
+var companies = from person in people3
+                group person by person.Company;
+
+foreach (var company in companies)
+{
+    Console.WriteLine(company.Key);
+
+    foreach (var person in company)
+    {
+        Console.WriteLine(person.Name);
+    }
+    Console.WriteLine(); // для разделения между группами
+}
 
 
 
@@ -54,6 +78,8 @@ foreach (var person in result)
 Console.WriteLine("////////////////");
 // კლასები
 record class Person(string Name, int Age);
+
+record class Person2(string Name, string Company);
 
 
 
