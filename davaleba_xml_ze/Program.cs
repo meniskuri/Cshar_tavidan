@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics.Metrics;
 using System.Xml;
 using System.Xml.Linq;
+using System.Xml.XPath;
 
 List<Location> locations = new();
 List<Container> containers = new();
@@ -16,7 +14,7 @@ xDoc.Load("XMLForKapanasTask.xml");
 XmlElement? xRoot = xDoc.DocumentElement;
 
 if (xRoot != null)
-{
+{ 
     // ყველა შვილი ელემენტს გადავუყვებით
     foreach (XmlNode child in xRoot.ChildNodes)
     {
@@ -33,13 +31,13 @@ if (xRoot != null)
 
                 // ვიღებთ ატრიბუტებს
                 if (subChild.Attributes?["id"] != null)
-                    location.Id = int.Parse(subChild.Attributes["id"].Value);
+                    location.Id = int.Parse(subChild.Attributes["id"]?.Value);
 
                 if (subChild.Attributes?["name"] != null)
                     location.Name = subChild.Attributes["name"].Value;
 
                 if (subChild.Attributes?["adress"] != null)
-                    location.Adress = subChild.Attributes["adress"].Value;
+                    location.Adress = subChild.Attributes["adress"]?.Value;
 
                 locations.Add(location);
             }
@@ -73,10 +71,11 @@ if (xRoot != null)
                     courier.Name = subChild.Attributes["name"].Value;
 
                 if (subChild.Attributes?["surname"] != null)
-                    courier.Surname = subChild.Attributes["surname"].Value;
+                    courier.Surname = subChild.Attributes["surname"]?.Value;
 
                 if (subChild.Attributes?["phonenumber"] != null)
-                    courier.PhoneNumber = subChild.Attributes["phonenumber"].Value;
+                    courier.PhoneNumber = subChild.Attributes["phonenumber"]?.Value ?? "";
+                
 
                 couriers.Add(courier);
             }
@@ -88,7 +87,7 @@ if (xRoot != null)
                 // ვიღებთ ატრიბუტებს
                 if (subChild.Attributes?["id"] != null)
                     order.Id = int.Parse(subChild.Attributes["id"].Value);
-                
+
                 if (subChild.Attributes?["start_location_id"] != null)
                     order.StartLocationId = int.Parse(subChild.Attributes["start_location_id"].Value);
 
@@ -97,7 +96,7 @@ if (xRoot != null)
 
                 if (subChild.Attributes?["container_id"] != null)
                     order.ContainerId = int.Parse(subChild.Attributes["container_id"].Value);
-                
+
                 if (subChild.Attributes?["courier_id"] != null)
                     order.CourierId = int.Parse(subChild.Attributes["courier_id"].Value);
 
@@ -143,8 +142,8 @@ foreach (var order in orders)
         $"end_date_time = {order.EndDateTime}");
 
 // xml დოკის ბეჭდვა
-Console.WriteLine("/////////");
-Console.WriteLine(xRoot); // kitxva??? < rato ar bechdavs dokuments consolshi?
+Console.WriteLine("///////// aq var <<<<<<<<<<<<");
+Console.WriteLine(xRoot.InnerXml); // kitxva??? < rato ar bechdavs dokuments consolshi?
 
 // axali xml failis sheqmna da chawera
 Console.WriteLine("/////////");
@@ -180,8 +179,9 @@ XDocument newDoc = new XDocument( // kitxva??
             )
         ),
         new XElement("orders",
-            from ord in orders
-            select new XElement("order",
+        orders.Select(ord => 
+            
+                new XElement("order",
                 new XAttribute("id", ord.Id),
                 new XAttribute("start_location_id", ord.StartLocationId),
                 new XAttribute("end_location_id", ord.EndLocationId),
@@ -190,10 +190,11 @@ XDocument newDoc = new XDocument( // kitxva??
                 new XAttribute("start_date_time", ord.StartDateTime.ToString("dd/MM/yyyy HH:mm")),
                 new XAttribute("end_date_time", ord.EndDateTime.ToString("dd/MM/yyyy HH:mm"))
             )
-        )
+        ))
     )
 );
 
+// newDoc.XPathSelectElements
 Console.WriteLine(newDoc);
 newDoc.Save("NewXMLForKapanasTask.xml");
 
@@ -216,7 +217,7 @@ class Courier
 {
     public int Id { get; set; }
     public string Name { get; set; } = "";
-    public string Surname { get; set; } = "";
+    public string? Surname { get; set; } = "";
     public string PhoneNumber { get; set; } = "";
 }
 

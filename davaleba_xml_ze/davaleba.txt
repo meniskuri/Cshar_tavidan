@@ -1,0 +1,31 @@
+1. თვითოეული ობიექტი უნდა იყოს cs ფაილში 
+2. მოვაგვარო ყველა ვორნინგი (მწვანეები)
+3. newDoc.XPathSelectElements წაკითხვის დროს გამოვიყენოთ 
+XmlNode itemsNode = doc.SelectSingleNode("/Root/Items");
+წაკითხვა უნდა გავიტანო მეთოდებში 
+ReadContainers
+...
+..
+.
+ამას პარამეტრად უნდა გადავცე xdoc (< ახალზე გადავიდე) 
+მე მჭირდება კლასი რომელსაც გადავცემ ფაილის პაზს (გზას) და შიგნით მოხდება ყველა ამ ობიექტების შექმნა წაკითხვა 
+გავალამაზო მოკლედ 
+newDoc.XPathSelectElements ამეების გამოყენებით 
+var items = doc.Root
+                       .Element("Items")?
+                       .Elements("Item");
+					   
+var items = doc.XPathSelectElements("/Root/Items/Item");
+
+        foreach (var item in items)
+
+რიდისთვის
+
+4. მექნება ბრძანება search 
+
+5. 
+search locationId="1" orders
+search containerId="2" orders
+search courierId="2" orders
+
+search courier="leqso abramishvili" locations
