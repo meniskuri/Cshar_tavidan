@@ -24,7 +24,7 @@ var items = doc.XPathSelectElements("/Root/Items/Item");
 4. მექნება ბრძანება search 
 
 5. 
-search locationId="1" orders
+search locationId="1" orders <<<<<<<<<<<<<<<<
 search containerId="2" orders
 search courierId="2" orders
 
