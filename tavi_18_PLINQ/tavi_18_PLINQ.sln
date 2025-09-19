@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36301.6 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tavi_18_PLINQ", "tavi_18_PLINQ.csproj", "{8DA1F698-E1A7-48A4-A193-77D7D5360B0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8DA1F698-E1A7-48A4-A193-77D7D5360B0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DA1F698-E1A7-48A4-A193-77D7D5360B0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DA1F698-E1A7-48A4-A193-77D7D5360B0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DA1F698-E1A7-48A4-A193-77D7D5360B0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {225AFF93-34BD-4C6F-ACB1-E3B5CFAAA023}
+	EndGlobalSection
+EndGlobal

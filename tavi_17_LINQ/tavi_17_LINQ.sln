@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36301.6 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tavi_17_LINQ", "tavi_17_LINQ.csproj", "{DB783DF9-9D02-4D2F-B795-8FEE16BED4F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB783DF9-9D02-4D2F-B795-8FEE16BED4F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB783DF9-9D02-4D2F-B795-8FEE16BED4F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB783DF9-9D02-4D2F-B795-8FEE16BED4F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB783DF9-9D02-4D2F-B795-8FEE16BED4F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {78A45E05-1BAC-4789-9796-D516F36E07CD}
+	EndGlobalSection
+EndGlobal
