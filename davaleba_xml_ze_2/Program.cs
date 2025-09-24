@@ -1,27 +1,33 @@
 ﻿using System;
-using davaleba_xml_ze_2;
+using System.IO; // Path.Combine, Directory.GetParent-სთვის
 using davaleba_xml_ze_2.klasebi;
 using davaleba_xml_ze_2.servisebi;
 
-// 1️ XML ფაილის გზა და 2️ XmlReaderService ობიექტის შექმნა
-string xmlPath = "C:\\Users\\Gio\\Desktop\\Programireba\\Cshar_tavidan\\davaleba_xml_ze_2\\XML\\XMLForKapanasTask.xml";
- 
+// 1️ ვპოულობთ პროექტის root საქაღალდეს (bin/debug/... → მოვდივართ უკან)
+string projectRoot = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory)!.Parent!.Parent!.Parent!.FullName;
+
+// 2️ XML ფოლდერის სრული გზა
+string xmlFolder = Path.Combine(projectRoot, "XML");
+
+// 3️ ფაილების სრული გზები
+string xmlPath = Path.Combine(xmlFolder, "XMLForKapanasTask.xml");
+string newXmlPath = Path.Combine(xmlFolder, "NewDVShipper.xml");
+
+// 4️ XmlReaderService ობიექტის შექმნა
 var reader = new XmlReaderService(xmlPath);
 
-// 3️ XML-ის წაკითხვა და ობიექტების მიღება
+// 5️ XML-ის წაკითხვა
 var locations = reader.ReadLocations();
 var containers = reader.ReadContainers();
 var couriers = reader.ReadCouriers();
 var orders = reader.ReadOrders();
 
-// 4 ახალი xml ის შექმნა 
-// XmlWriterService–ის შექმნა ახალი XML დოკუმენტის შექმნა შენახვა ფაილში
+// 6️ ახალი xml-ის შექმნა
 var writer = new XmlWriterService(locations, containers, couriers, orders);
 var newDoc = writer.BuildXml();
-// Console.WriteLine(newDoc);
-writer.SaveToFile("C:\\Users\\Gio\\Desktop\\Programireba\\Cshar_tavidan\\davaleba_xml_ze_2\\XML\\NewDVShipper.xml");
+writer.SaveToFile(newXmlPath);
 
-// search???? rogor gavaketo? 
+// 7️ SearchService
 var search = new SearchService(locations, containers, couriers, orders);
 
 while (true)
@@ -66,7 +72,7 @@ while (true)
             break;
 
         case "4":
-            Console.Write("enter courier name and surname (mag: leqso abramishvili): ");
+            Console.Write("enter courier name and surname (მაგ: leqso abramishvili): ");
             string? fullName = Console.ReadLine();
             var locs = search.SearchLocationsByCourier(fullName ?? "");
             foreach (var l in locs)
@@ -79,7 +85,7 @@ while (true)
     }
 }
 
-// 5 მონაცემების კონსოლზე გამოჩენა
+// 8️ მონაცემების კონსოლზე გამოჩენა
 Console.WriteLine("=== Locations ===");
 foreach (var loc in locations)
     Console.WriteLine($"{loc.Id} - {loc.Name} - {loc.Address}");
