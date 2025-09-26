@@ -1,24 +1,40 @@
 ﻿using davaleba_xml_ze_2.klasebi;
 using davaleba_xml_ze_2.servisebi;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.IO;
-using System.Linq;
 
-// Paths
+// 1. DI container შექმნა
+var services = new ServiceCollection();
+
+// 2. პროექტის root და XML path
 string projectRoot = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory)!.Parent!.Parent!.Parent!.FullName;
-string xmlPath = Path.Combine(projectRoot, "XML", "XMLForKapanasTask.xml");
-string newXmlPath = Path.Combine(projectRoot, "XML", "NewDVShipper.xml");
+string xmlFolder = Path.Combine(projectRoot, "XML");
+string xmlPath = Path.Combine(xmlFolder, "XMLForKapanasTask.xml");
+string newXmlPath = Path.Combine(xmlFolder, "NewDVShipper.xml");
 
-// 1. Reader and data
-IReaderService reader = new XmlReaderService(xmlPath);
+// 3. Register ReaderService
+services.AddSingleton<IReaderService>(sp => new XmlReaderService(xmlPath));
+
+// 4. Build provider და load data
+var provider = services.BuildServiceProvider();
+var reader = provider.GetRequiredService<IReaderService>();
 var locations = reader.ReadLocations();
 var containers = reader.ReadContainers();
 var couriers = reader.ReadCouriers();
 var orders = reader.ReadOrders();
 
-// 2. Services
-ISearchService search = new SearchService(locations, containers, couriers, orders);
-IWriterService writer = new XmlWriterService(locations, containers, couriers, orders);
+// 5. Register Writer & Search services
+services.AddSingleton<ISearchService>(sp => new SearchService(locations, containers, couriers, orders));
+services.AddSingleton<IWriterService>(sp => new XmlWriterService(locations, containers, couriers, orders));
+
+// 6. Build final provider
+provider = services.BuildServiceProvider();
+var search = provider.GetRequiredService<ISearchService>();
+var writer = provider.GetRequiredService<IWriterService>();
+
+// 7. Save new XML
+writer.SaveToFile(newXmlPath);
 
 // 3. Menu loop with try-catch
 while (true)
