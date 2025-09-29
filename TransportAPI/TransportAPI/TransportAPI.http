@@ -1,0 +1,6 @@
+@TransportAPI_HostAddress = http://localhost:5023
+
+GET {{TransportAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
