@@ -31,3 +31,5 @@ var app = builder.Build();
 app.MapControllers();
 
 app.Run();
+
+// წკაპანა დრაკონჩიკი
