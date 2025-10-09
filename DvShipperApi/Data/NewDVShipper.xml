@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dvshipper>
+  <locations>
+    <location id="1" name="location1" adress="nutstubidzis 18" />
+    <location id="2" name="location2" adress="tbilisi, iashvilis 8" />
+    <location id="3" name="location3" adress="tbilisi, voroncovi 6" />
+    <location id="4" name="location4" adress="qutaisi, galaqtionis 10" />
+  </locations>
+  <containers>
+    <container id="1" name="container 1" barcode="215618481" />
+    <container id="2" name="container 2" barcode="654854854" />
+  </containers>
+  <couriers>
+    <courier id="1" name="vaxo" surname="gelenidze" phonenumber="555-11-22-33" />
+    <courier id="2" name="leqso" surname="abramishvili" phonenumber="555-10-20-30" />
+  </couriers>
+  <orders>
+    <order id="1" start_location_id="1" end_location_id="2" container_id="1" courier_id="1" start_date_time="15/08/2025 13:15" end_date_time="15/08/2025 14:15" />
+    <order id="2" start_location_id="1" end_location_id="2" container_id="1" courier_id="1" start_date_time="16/08/2025 13:15" end_date_time="16/08/2025 14:15" />
+    <order id="3" start_location_id="1" end_location_id="2" container_id="1" courier_id="1" start_date_time="17/08/2025 13:15" end_date_time="17/08/2025 14:15" />
+    <order id="4" start_location_id="1" end_location_id="2" container_id="1" courier_id="1" start_date_time="18/08/2025 13:15" end_date_time="18/08/2025 14:15" />
+    <order id="5" start_location_id="1" end_location_id="2" container_id="1" courier_id="1" start_date_time="19/08/2025 13:15" end_date_time="19/08/2025 14:15" />
+    <order id="6" start_location_id="3" end_location_id="4" container_id="2" courier_id="2" start_date_time="16/08/2025 15:15" end_date_time="18/08/2025 16:15" />
+  </orders>
+</dvshipper>
