@@ -5,6 +5,7 @@ using DvShipperApi.Interfaces;
 using DvShipperApi.Services;
 using System.IO;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 string projectRoot = AppContext.BaseDirectory;
@@ -33,3 +34,4 @@ app.MapControllers();
 app.Run();
 
 // წკაპანა დრაკონჩიკი
+// აქ ჯერ არ მაქვს მაგრამ ვაკეთებ
